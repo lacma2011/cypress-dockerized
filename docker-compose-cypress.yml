@@ -13,8 +13,6 @@ services:
       network_mode: host
       working_dir: /e2e
       environment:
-        - CYPRESS_BASE_URL=http://local.sessiongirls.com:3000/
-        - CYPRESS_BASE_HOST=local.sessiongirls.com:3000
         - CYPRESS_UID=${UID_:?err}
         - CYPRESS_GID=${GID_:?err}
         - DISPLAY=unix${DISPLAY}
