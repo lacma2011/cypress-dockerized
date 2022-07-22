@@ -1,0 +1,31 @@
+version: '3'
+services:
+    cypress_gui:
+      build:
+        context: ./cypress10
+        dockerfile: ../docker/Dockerfile_cypress
+      image: mycypress2
+      container_name: cypress_gui2
+      #depends_on:
+      #  - web
+      privileged: true
+      user: "${UID_:?err}:${GID_CYPRESS:?err}"
+      network_mode: host
+      working_dir: /e2e
+      environment:
+        - CYPRESS_BASE_URL=http://local.sessiongirls.com:3000/
+        - CYPRESS_BASE_HOST=local.sessiongirls.com:3000
+        - CYPRESS_UID=${UID_:?err}
+        - CYPRESS_GID=${GID_:?err}
+        - DISPLAY=unix${DISPLAY}
+      entrypoint:
+        - cypress
+        - open
+        - --project
+        - .
+      volumes:
+        - /tmp/.X11-unix:/tmp/.X11-unix
+        - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
+        - ${PWD}/cypress10:/e2e
+        #careful now
+        - /var/run/docker.sock:/var/run/docker.sock
