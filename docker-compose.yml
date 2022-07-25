@@ -9,12 +9,12 @@ services:
       #depends_on:
       #  - web
       privileged: true
-      user: "${UID_:?err}:${GID_CYPRESS:?err}"
+#      user: "${UID_:?err}:${GID_CYPRESS:?err}"
       network_mode: host
       working_dir: /e2e
       environment:
-        - CYPRESS_UID=${UID_:?err}
-        - CYPRESS_GID=${GID_:?err}
+#        - CYPRESS_UID=${UID_:?err}
+#        - CYPRESS_GID=${GID_:?err}
         - DISPLAY=unix${DISPLAY}
       entrypoint:
         - cypress
